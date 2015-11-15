@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>页面跳转中...</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width">
+    </head>
+    <body>
+        <div><?php echo $tips;?></div><span id="times"><?php echo $times;?></span>秒后，跳转到<a href="<?php echo $url;?>">目标页面</a>
+        <script type="text/javascript">
+            var timesEle = document.getElementById('times');
+            var times = '<?php echo $times;?>';
+            var url = '<?php echo $url;?>';
+            function jump() {
+                times--;
+                timesEle.innerText = times;
+                if (times <= 1) {
+                    location.href = url;
+                }
+
+            }
+
+            setInterval('jump()', 1000);
+        </script>
+    </body>
+</html>

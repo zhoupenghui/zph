@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>ECSHOP 管理中心 - 商品列表 </title>
+        <meta name="robots" content="noindex, nofollow"/>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="public/css/general.css" rel="stylesheet" type="text/css" />
+        <link href="public/css/main.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body>
+
+        <h1>
+            <span class="action-span"><a href="index.php?p=back&c=goods&a=add">添加新商品</a></span>
+            <span class="action-span1"><a href="index.php?p=back&c=index&a=main">ECSHOP 管理中心</a> </span><span id="search_id" class="action-span1"> - 商品列表 </span>
+        </h1>
+        <div style="clear:both"></div>
+
+        <!-- 商品列表 -->
+        <form method="post" action="" name="listForm">
+            <!-- start goods list -->
+            <div class="list-div" id="listDiv">
+                <table cellpadding="3" cellspacing="1">
+                    <tr>
+                        <th>
+                            编号<img src="public/images/sort_desc.gif"/>
+                        </th>
+                        <th>商品名称</th>
+                        <th>货号</th>
+                        <th>价格</th>
+                        <th>上架</th>
+                        <th>推荐</th>
+                        <th>新品</th>
+                        <th>热销</th>
+                        <th>库存</th>
+                        <th>操作</th>
+                    </tr>
+                    <?php foreach($list1 as $goods):?>
+                    <tr>
+                        <td class="first-cell" style=""><?php echo $goods['goods_id'];?></td>
+                        <td class="first-cell" style=""><?php echo $goods['goods_name'];?></td>
+                        <td><?php echo $goods['goods_sn'];?></td>
+                        <td align="right"><?php echo $goods['goods_price'];?> </td>
+                        <td align="center"><img src="public/images/<?php if ($goods['goods_condition']){echo 'yes';}else{ echo 'no';}?>.gif" /></td>
+                        <td align="center"><img src="public/images/<?php if ($goods['goods_recommend']){echo 'yes';}else{ echo 'no';}?>.gif" /></td>
+                        <td align="center"><img src="public/images/<?php if ($goods['goods_new']){echo 'yes';}else{ echo 'no';}?>.gif" /></td>
+                        <td align="center"><img src="public/images/<?php if ($goods['goods_hot']){echo 'yes';}else{ echo 'no';}?>.gif" /></td>
+                        <td align="right"><?php echo $goods['goods_num'];?></td>
+                        <td align="center">
+                            
+                            <a href="index.php?p=back&c=goods&a=edit&goods_id=<?php echo $goods['goods_id'];?>" title="编辑"><img src="public/images/icon_edit.gif" width="16" height="16" border="0" /></a>
+                            
+                            <a href="index.php?p=back&c=goods&a=back&restore=1&goods_id=<?php echo $goods['goods_id'];?>" title="回收站"><img src="public/images/icon_trash.gif" width="16" height="16" border="0" /></a>
+                                     </td>
+                    </tr>
+                    <?php endforeach;?>
+                </table>
+                <!-- end goods list -->
+
+                <!-- 分页 -->
+                <table id="page-table" cellspacing="0">
+                    <tr>
+                        <td align="right" nowrap="true">
+                            <?php echo $pageHtml;?>
+                        </td>
+                    </tr>
+                </table>
+
+            </div>
+        </form>
+    </body>
+</html>

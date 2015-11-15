@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>ECSHOP 管理中心 - 商品分类 </title>
+        <meta name="robots" content="noindex, nofollow"/>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="public/css/general.css" rel="stylesheet" type="text/css" />
+        <link href="public/css/main.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body>
+
+        <h1>
+            <span class="action-span"><a href="index.php?p=back&c=category&a=add">添加分类</a></span>
+            <span class="action-span1"><a href="index.php?p=back&c=index&a=main">ECSHOP 管理中心</a> </span><span id="search_id" class="action-span1"> - 商品分类 </span>
+            <div style="clear:both"></div>
+        </h1>
+        <form method="post" action="" name="listForm">
+            <!-- start ad position list -->
+            <div class="list-div" id="listDiv">
+
+                <table width="100%" cellspacing="1" cellpadding="2" id="list-table">
+                    <tr>
+                        <th>分类名称</th>
+                        <th>操作</th>
+                    </tr>
+                    <?php foreach($list as $item):?>
+                    <tr align="center" class="0" id="0_6">
+                        <td align="left" class="first-cell" >
+                            <?php echo str_repeat('&nbsp;',$item['deep'] * 4);?><img src="public/images/menu_minus.gif" id="icon_0_6" width="9" height="9" border="0" style="margin-left:0em" />
+                            <span><a href="goods.php?act=list&type_id=6"><?php echo $item['type_name'];?></a></span>
+                        </td>
+                        <td width="24%" align="center">
+                            <a href="category.php?act=move&type_id=6">转移商品</a> |
+                            <a href="index.php?p=back&c=category&a=edit&type_id=<?php echo $item['type_id'];?>">编辑</a> |
+                            <a href="javascript:;" onclick="removeCat('<?php echo $item['type_id'];?>')" title="移除">移除</a>
+                        </td>
+                    </tr>
+                    <?php endforeach;?>
+                </table>
+            </div>
+        </form>
+        <script type="text/javascript">
+            function removeCat(type_id) {
+                if (confirm('您确认要删除这条记录吗?')) {
+                    location.href = "index.php?p=back&c=category&a=remove&type_id="+type_id;
+                }
+            }
+        </script>
+    </body>
+</html>

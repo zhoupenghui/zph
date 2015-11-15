@@ -1,0 +1,88 @@
+
+<!-- $Id: msg_list.htm 15616 2009-02-18 05:16:22Z sunxiaodong $ -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>ECSHOP 管理中心 - 会员留言 </title>
+<meta name="robots" content="noindex, nofollow" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="public/css/general.css" rel="stylesheet" type="text/css" />
+<link href="public/css/main.css" rel="stylesheet" type="text/css" />
+
+</head>
+<body>
+
+<h1>
+<span class="action-span1"><a href="index.php?p=back&c=index&a=main">ECSHOP 管理中心</a> </span><span id="search_id" class="action-span1"> - 会员留言 </span>
+
+</h1>
+    <div style="clear:both"></div>
+<script type="text/javascript" src="../js/utils.js"></script><script type="text/javascript" src="js/listtable.js"></script><div class="form-div">
+    <form action="index.php?p=back&a=list&c=Message" method="post" name="searchForm">
+    <img src="public/images/icon_search.gif" width="26" height="22" border="0" alt="SEARCH" />
+    类型:
+    <select name="msg_type">
+      <option value="-1">请选择...</option>
+      <option value="0">留言</option>
+      <option value="1">投诉</option>
+      <option value="2">询问</option>
+      <option value="3">售后</option>
+      <option value="4">求购</option>
+	  <option value="5">商家留言</option>
+    </select>
+    留言标题: <input type="text" name="keyword" /> <input type="submit" class="button" value=" 搜索 " />
+  </form>
+</div>
+<form method="POST" action="user_msg.php?act=batch_drop" name="listForm" onsubmit="return confirm_bath()">
+<!-- start article list -->
+<div class="list-div" id="listDiv">
+<table cellpadding="3" cellspacing="1">
+  <tr>
+    <th>
+      
+     编号<img src="public/images/sort_desc.gif">    </th>
+    <th>用户名</th>
+    <th>留言标题</th>
+    <th>类型</th>
+    <th>留言时间</th>
+    <th>状态</th>
+    <th>回复</th>
+    <th>操作</th>
+  </tr>
+    <?php foreach($list as  $val):?>
+    <tr>
+        <td align="center"><?php echo $val['msg_id'];?></td>
+    <td align="center"><?php echo $val['user_name'];?></td>
+    <td align="left"><?php echo $val['msg_title'];?></td>
+    <td align="center"><?php echo $val['msg_type'];?></td>
+    <td align="center"  nowrap="nowrap"><?php echo $val['msg_time'];?></td>
+        <td align="center"><?php echo $val['msg_status'];?></td>
+        <td align="center"><?php if($val['msg_reply']){echo '已回复';}else{echo '未回复';}?></td>
+    <td align="center">
+        <a href="index.php?p=back&c=Message&a=details&msg_id=<?php echo $val['msg_id'];?>" title="查看详情">
+        <img src="public/images/icon_view.gif" border="0" height="16" width="16" />
+      </a>
+        <a href="index.php?p=back&a=delete&c=Message&msg_id=<?php echo $val['msg_id'];?>" onclick="confirm('你确定要删除吗？')" title="移除">
+        <img src="public/images/icon_drop.gif" border="0" height="16" width="16">
+      </a>
+    </td>
+  </tr>
+    <?php endforeach;?>
+  </table>
+<table id="page-table" cellspacing="0">
+<tr>
+  <td align="right" nowrap="true">
+        <!-- $Id: page.htm 14216 2008-03-10 02:27:21Z testyang $ -->
+            <div id="turn-page">
+        <?php echo $pageHtml;?> 
+      </div>
+  </td>
+</tr>
+    
+</table>
+</div>
+<!-- end article list -->
+</form>
+
+</body>
+</html>

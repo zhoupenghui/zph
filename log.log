@@ -1,0 +1,100 @@
+Array
+Array
+Array
+array (
+  'sess_data' => 'code|s:4:"5R3X";',
+)
+array (
+  'sess_data' => '',
+)
+array (
+  'sess_data' => 'code|s:4:"0IVQ";',
+)
+array (
+  'sess_data' => '',
+)
+array (
+  'sess_data' => '',
+)
+array (
+  'sess_data' => 'code|s:4:"0LT9";',
+)
+array (
+  'sess_data' => '',
+)
+array (
+  'sess_data' => '',
+)
+array (
+  'sess_data' => 'code|s:4:"GCK3";',
+)
+array (
+  'sess_data' => '',
+)
+array (
+  'sess_data' => '',
+)
+array (
+  'sess_data' => 'code|s:4:"SZA8";',
+)
+array (
+  'sess_data' => '',
+)
+array (
+  'sess_data' => '',
+)
+array (
+  'sess_data' => 'code|s:4:"M63P";',
+)
+array (
+  'sess_data' => 'code|s:4:"WJUS";',
+)
+array (
+  'sess_data' => 'code|s:4:"ILRU";',
+)
+array (
+  'sess_data' => '',
+)
+array (
+  'sess_data' => '',
+)
+array (
+  'sess_data' => 'code|s:4:"RNXC";',
+)
+array (
+  'Field' => 'admin_id',
+  'Type' => 'int(10) unsigned',
+  'Null' => 'NO',
+  'Key' => 'PRI',
+  'Default' => NULL,
+  'Extra' => 'auto_increment',
+)
+array (
+  1 => '1',
+)
+array (
+  'sess_data' => '',
+)
+array (
+  'sess_data' => '',
+)
+array (
+  'sess_data' => 'code|s:4:"QESV";',
+)
+array (
+  'Field' => 'admin_id',
+  'Type' => 'int(10) unsigned',
+  'Null' => 'NO',
+  'Key' => 'PRI',
+  'Default' => NULL,
+  'Extra' => 'auto_increment',
+)
+array (
+  1 => '1',
+)
+array (
+  'sess_data' => '',
+)
+array (
+  'sess_data' => '',
+)

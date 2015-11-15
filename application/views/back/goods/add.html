@@ -1,0 +1,272 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>ECSHOP 管理中心 - 添加商品 </title>
+        <meta name="robots" content="noindex, nofollow"/>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="public/css/general.css" rel="stylesheet" type="text/css" />
+        <link href="public/css/main.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body>
+
+        <h1>
+            <span class="action-span"><a href="index.php?p=back&c=goods&a=list">商品列表</a></span>
+            <span class="action-span1"><a href="index.php?p=back&c=index&a=main">ECSHOP 管理中心</a> </span><span id="search_id" class="action-span1"> - 添加商品 </span>
+        </h1>
+        <div style="clear:both"></div>
+
+
+        <!-- start goods form -->
+        <div class="tab-div">
+            <!-- tab bar -->
+            <div id="tabbar-div">
+                <p>
+                    <span class="tab-front" id="general-tab">通用信息</span><span
+                        class="tab-back" id="detail-tab">详细描述</span><span
+                        class="tab-back" id="mix-tab">其他信息</span><span
+                        class="tab-back" id="gallery-tab">商品相册</span><span
+            </p>
+        </div>
+
+        <!-- tab body -->
+        <div id="tabbody-div">
+            <form enctype="multipart/form-data" action="index.php?p=back&c=goods&a=insert" method="post" name="theForm" >
+                <!-- 最大文件尺寸 -->
+                <!--<input type="hidden" name="MAX_FILE_SIZE" value="2097152" />-->
+                <!-- 通用信息 -->
+                <table width="90%" id="general-table" align="center">
+                    <tr>
+                        <td class="label">商品名称：</td>
+                        <td><input type="text" name="goods_name" value="" style="float:left;" size="30" />&nbsp;
+                            <span class="require-field">*</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="label">
+                            <img src="public/images/notice.gif" width="16" height="16" border="0" alt="点击此处查看提示信息"></a> 商品货号： </td>
+                        <td><input type="text" name="goods_sn" value="<?php echo mt_rand(1,1000);?>" size="20" /></span><br />
+                            <span class="notice-span" style="display:block"  id="noticeGoodsSN">如果您不输入商品货号，系统将自动生成一个唯一的货号。</span></td>
+                    </tr>
+
+                    <tr>
+                        <td class="label">商品分类：</td>
+                       <td>
+                            <select name="parent_id">
+                                <option value="0">顶级分类</option>
+                                <?php foreach($list as $item):?>
+                                <option value="<?php echo $item['type_id'];?>"><?php echo str_repeat('&nbsp;',2*$item['deep']).$item['type_name'];?></option>
+                                <?php endforeach;?>
+                            </select>
+                        </td>
+
+                    </tr>
+<!--                    <tr>
+                        <td class="label">商品品牌：</td>
+                         <td>
+                            <select name="parent_id">
+                                <option value="0">顶级分类</option>
+                                <?php foreach($goodsbrand as $item):?>
+                                <option value="<?php echo $item['type_id'];?>"><?php echo str_repeat('&nbsp;',2*$item['deep']).$item['type_name'];?></option>
+                                <?php endforeach;?>
+                            </select>
+                        </td>
+                    </tr>-->
+
+                    
+
+                    <tr>
+                        <td class="label">本店售价：</td>
+                        <td><input type="text" name="goods_price" value="" size="20"/>
+                            <span class="require-field">*</span></td>
+                    </tr>
+
+
+                    <tr>
+                        <td class="label">重量：</td>
+                        <td>
+                            <input type="text" name="goods_weight" value="2"size="20" />
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="label">上传商品图片：</td>
+                        <td>
+                            <input type="file" name="goods_addr" size="35" />
+                            <img src="public/images/no.gif" />
+                        </td>
+                    </tr>
+                </table>
+
+                <!-- 商品描述 -->
+                <table width="90%" id="detail-table" style="display:none">
+                    <tr>
+                        <td><textarea id="goods_desc" name="goods_describe" style="width:500px;height: 200px;resize: none;" ></textarea></td>
+                    </tr>
+                </table>
+
+                <!-- 其它信息 -->
+                <table width="90%" id="mix-table" style="display:none" align="center">
+                    <tr>
+                        <td class="label"><a href="javascript:;" title="点击此处查看提示信息"><img src="public/images/notice.gif" width="16" height="16" border="0" alt="点击此处查看提示信息"></a> 商品库存数量：</td>
+                        <td><input type="text" name="goods_num" value="" size="20" /><br />
+                            <span class="notice-span" style="display:block"  id="noticeStorage">库存在商品为虚货或商品存在货品时为不可编辑状态，库存数值取决于其虚货数量或货品数量</span></td>
+                    </tr>
+                    <tr>
+                        <td class="label">加入推荐：</td>
+                        <td><input type="checkbox" name="goods_recommend" value="1" />推荐 <input type="checkbox" name="goods_new" value="1" />新品 <input type="checkbox" name="goods_hot" value="1"  />热销</td>
+                    </tr>
+                    <tr id="alone_sale_1">
+                        <td class="label" id="alone_sale_2">上架：</td>
+                        <td id="alone_sale_3"><input type="checkbox" name="goods_condition" value="1" checked="checked" /> 打勾表示允许销售，否则不允许销售。</td>
+                    </tr>
+                </table>
+
+                <!-- 商品相册 -->
+                <table width="90%" id="gallery-table" style="display:none" align="center">
+                    <!-- 显示空行 -->
+                    <tr>
+                        <td>
+                        </td>
+                    </tr>
+                    <tr><td>&nbsp;</td></tr>
+                    <!-- 多图片上传开始 -->
+                    <tr>
+                        <td>
+                            <a href="javascript:;" onclick="addImg(this)">[+]</a>
+                            图片描述 <input type="text" name="img_desc[]" size="20" />
+                            上传文件 <input type="file" name="img_url[]" />
+                        </td>
+                    </tr>
+                </table>
+
+                <!-- 商品相册结束 -->
+
+                <div class="button-div">
+                    <input type="submit" value=" 确定 " class="button"/>
+                    <input type="reset" value=" 重置 " class="button" />
+                </div>
+                <input type="hidden" name="act" value="insert" />
+            </form>
+        </div>
+    </div>
+    <!-- end goods form -->
+    <script type="text/javascript" src="public/js/utils.js"></script>
+    <script type="text/javascript" src="public/js/tab.js"></script>
+    <script type="text/javascript">
+                                /**
+                                 * 添加一个图片上传框
+                                 */
+                                function addImg(obj)
+                                {
+                                    var src = obj.parentNode.parentNode;
+                                    var idx = rowindex(src);
+                                    var tbl = document.getElementById('gallery-table');
+                                    var row = tbl.insertRow(idx + 1);
+                                    var cell = row.insertCell(-1);
+                                    cell.innerHTML = src.cells[0].innerHTML.replace(/(.*)(addImg)(.*)(\[)(\+)/i, "$1removeImg$3$4-");
+                                }
+
+                                /**
+                                 * 删除一行图片上传框
+                                 */
+                                function removeImg(obj)
+                                {
+                                    var row = rowindex(obj.parentNode.parentNode);
+                                    var tbl = document.getElementById('gallery-table');
+
+                                    tbl.deleteRow(row);
+                                }
+                                function rapidBrandAdd(conObj)
+                                {
+                                    var brand_div = document.getElementById("brand_add");
+
+                                    if (brand_div.style.display != '')
+                                    {
+                                        var brand = document.forms['theForm'].elements['addedBrandName'];
+                                        brand.value = '';
+                                        brand_div.style.display = '';
+                                    }
+                                }
+
+                                function hideBrandDiv()
+                                {
+                                    var brand_add_div = document.getElementById("brand_add");
+                                    if (brand_add_div.style.display != 'none')
+                                    {
+                                        brand_add_div.style.display = 'none';
+                                    }
+                                }
+
+                                function goBrandPage()
+                                {
+                                    if (confirm(go_brand_page))
+                                    {
+                                        window.location.href = 'brand.php?act=add';
+                                    }
+                                    else
+                                    {
+                                        return;
+                                    }
+                                }
+
+                                function rapidCatAdd()
+                                {
+                                    var cat_div = document.getElementById("category_add");
+
+                                    if (cat_div.style.display != '')
+                                    {
+                                        var cat = document.forms['theForm'].elements['addedCategoryName'];
+                                        cat.value = '';
+                                        cat_div.style.display = '';
+                                    }
+                                }
+
+                                function addBrand()
+                                {
+                                    var brand = document.forms['theForm'].elements['addedBrandName'];
+                                    if (brand.value.replace(/^\s+|\s+$/g, '') == '')
+                                    {
+                                        alert(brand_cat_not_null);
+                                        return;
+                                    }
+
+                                    var params = 'brand=' + brand.value;
+                                    Ajax.call('brand.php?is_ajax=1&act=add_brand', params, addBrandResponse, 'GET', 'JSON');
+                                }
+
+                                function addBrandResponse(result)
+                                {
+                                    if (result.error == '1' && result.message != '')
+                                    {
+                                        alert(result.message);
+                                        return;
+                                    }
+
+                                    var brand_div = document.getElementById("brand_add");
+                                    brand_div.style.display = 'none';
+
+                                    var response = result.content;
+
+                                    var selCat = document.forms['theForm'].elements['brand_id'];
+                                    var opt = document.createElement("OPTION");
+                                    opt.value = response.id;
+                                    opt.selected = true;
+                                    opt.text = response.brand;
+
+                                    if (Browser.isIE)
+                                    {
+                                        selCat.add(opt);
+                                    }
+                                    else
+                                    {
+                                        selCat.appendChild(opt);
+                                    }
+
+                                    return;
+                                }
+
+
+
+    </script>
+</body>
+</html>

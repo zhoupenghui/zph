@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>ECSHOP 管理中心 - 订单列表 </title>
+        <meta name="robots" content="noindex, nofollow" 、>
+            <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+            <link href="public/css/general.css" rel="stylesheet" type="text/css" />
+            <link href="public/css/main.css" rel="stylesheet" type="text/css" />
+
+    </head>
+    <body>
+
+        <h1>
+            <span class="action-span"><a href="index.php?p=back&c=orderlist&a=query">订单查询</a></span>
+            <span class="action-span1"><a href="index.php?p=back&c=index&a=main">ECSHOP 管理中心</a> </span><span id="search_id" class="action-span1"> - 订单列表 </span>
+            <div style="clear:both"></div>
+        </h1>
+
+        <div class="form-div">
+            <form action="index.php?p=back&a=list&c=Orderlist"  method="post">
+                <img src="public/images/icon_search.gif" width="26" height="22" border="0" alt="SEARCH" />
+                订单号<input name="order_sn" type="text" id="order_sn" size="15">
+                    收货人<input name="consignee" type="text" id="consignee" size="15">
+                        订单状态    <select name="status" id="status">
+                            <option value="-1" selected>请选择...</option>
+                            <option value="0" >待确认</option><option value="100">待付款</option><option value="101">待发货</option><option value="102">已完成</option><option value="1">付款中</option><option value="2">取消</option><option value="3">无效</option><option value="4">退货</option><option value="6">部分发货</option>    </select>
+                        <input type="submit" value=" 搜索 " name='sub' class="button" />
+<!--                        <a href="order.php?act=list&composite_status=0">待确认</a>
+                        <a href="order.php?act=list&composite_status=100">待付款</a>
+                        <a href="order.php?act=list&composite_status=101">待发货</a>-->
+                        </form>
+                        </div>
+
+                        <!-- 订单列表 -->
+                        
+                            <div class="list-div" id="listDiv">
+
+                                <table cellpadding="3" cellspacing="1">
+                                    <tr>
+                                        <th>
+                                            订单号    </th>
+                                        <th>下单时间<img src="public/images/sort_desc.gif"></th>
+                                        <th>收货人</th>
+                                        <th>应付金额</th>
+                                        <th>支付方式</th>
+                                        <th>订单状态</th>
+                                        <th>操作</th>                                       
+                                        <?php foreach($rst["data"] as $value):?>
+                                        <tr>
+                                            <td  align="center"><?php echo $value['order_num'];?></td>
+                                            <td align="center"><?php echo $value['order_time'];?></td>
+                                            <td align="center" > [TEL: <?php echo $value['phone_number'];?>] <br /><?php echo $value['consignee'];?></td>
+                                            <td align="center" ><?php echo $value['payable'];?></td>
+                                            <td align="center" ><?php echo $value['payment'];?></td>
+                                            <td align="center" ><?php echo $value['order_status'];?></td>
+                                            <td align="center" >
+                                                <a href="index.php?p=back&c=orderlist&a=query">查看</a>
+                                            </td>
+                                        </tr>
+                                        <?php endforeach;?>
+                                </table>
+
+                                <!-- 分页 -->
+                                <table id="page-table" cellspacing="0">
+                                    <tr>
+                                        <td align="right" nowrap="true">
+                                            <?php echo $pageHtml;?>
+                                        </td>
+                                    </tr>
+                                </table>
+
+                            </div>                
+                
+
+
+
+                        </body>
+                        </html>
